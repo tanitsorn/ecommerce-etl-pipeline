@@ -10,7 +10,7 @@ This project demonstrates practical Data Engineering skills including data extra
 
 * Build a production-style ETL pipeline.
 * Transform raw e-commerce data into analytics-ready datasets.
-* Store cleaned data in MySQL.
+* Load transformed data into MySQL.
 * Answer business questions using SQL.
 
 ---
@@ -32,8 +32,8 @@ Tables used:
 
 * Python
 * Pandas
-* MySQL
 * SQL
+* MySQL
 * Git
 * GitHub
 * Visual Studio Code
@@ -56,8 +56,7 @@ Transform
 - Calculate delivery days
       │
       ▼
-Load
-(MySQL)
+Load (MySQL)
       │
       ▼
 SQL Analytics
@@ -100,6 +99,11 @@ README.md
 
 ## Project Status
 
-🚧 In Progress
-
+🚧 In Progres
 This repository is being developed as a portfolio project to simulate a real-world Data Engineering workflow.
+✅ Repository setup
+✅ Documentation
+✅ Extract
+🟡 Transform (In Progress)
+⬜ Load
+⬜ Analytics
