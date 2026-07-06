@@ -99,11 +99,14 @@ README.md
 
 ## Project Status
 
-🚧 In Progres
-This repository is being developed as a portfolio project to simulate a real-world Data Engineering workflow.
-✅ Repository setup
-✅ Documentation
-✅ Extract
-🟡 Transform (In Progress)
-⬜ Load
-⬜ Analytics
+🟢 Completed
+
+The ETL pipeline has been fully implemented and tested.
+
+Features:
+- Extract raw ecommerce datasets
+- Transform and clean data
+- Load data into MySQL
+- Foreign key relationships
+- SQL validation scripts
+- SQL analytics queries
