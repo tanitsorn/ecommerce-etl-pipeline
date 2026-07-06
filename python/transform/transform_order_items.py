@@ -14,12 +14,6 @@ def transform_order_items():
         order_items["shipping_limit_date"]
     )
 
-    # Create revenue column
-    order_items["revenue"] = (
-        order_items["price"] +
-        order_items["freight_value"]
-    )
-
     # Save cleaned data
     save_csv(order_items, "order_items.csv")
 

@@ -30,6 +30,11 @@ def transform_products():
     for col in numeric_columns:
         products[col] = products[col].fillna(0)
 
+    products = products.rename(columns={
+        "product_name_lenght": "product_name_length",
+        "product_description_lenght": "product_description_length"
+    })
+
     # Save cleaned data
     save_csv(products, "products.csv")
 

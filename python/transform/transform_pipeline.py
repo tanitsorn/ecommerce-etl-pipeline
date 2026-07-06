@@ -1,7 +1,7 @@
-from python.transform.clean_customers import transform_customers
-from python.transform.clean_orders import transform_orders
-from python.transform.clean_order_items import transform_order_items
-from python.transform.clean_products import transform_products
+from python.transform.transform_customers import transform_customers
+from python.transform.transform_orders import transform_orders
+from python.transform.transform_order_items import transform_order_items
+from python.transform.transform_products import transform_products
 
 def run_transform_pipeline():
     print("Starting data transformation...")
