@@ -47,10 +47,67 @@ Transformed datasets are stored in:
 ```text
 data/clean/
 ```
+---
+
+## Technology Stack
+
+* Python
+* Pandas
+* SQL
+* MySQL
+* SQLAlchemy
+* PyMySQL
+* Git
+* GitHub
+* Visual Studio Code
 
 ---
 
 ## Architecture
+
+```text
+                +----------------------+
+                |   Raw CSV Dataset    |
+                | (Olist E-commerce)   |
+                +----------+-----------+
+                           |
+                           v
+                +----------------------+
+                |    Extract Module    |
+                |  python/extract/     |
+                +----------+-----------+
+                           |
+                           v
+                +----------------------+
+                |   Transform Module   |
+                | python/transform/    |
+                +----------+-----------+
+                           |
+                           v
+                +----------------------+
+                |     Clean CSVs       |
+                |    data/clean/       |
+                +----------+-----------+
+                           |
+                           v
+                +----------------------+
+                |     Load Module      |
+                |    python/load/      |
+                +----------+-----------+
+                           |
+                           v
+                +----------------------+
+                |      MySQL DB        |
+                |   ecommerce_etl      |
+                +----------+-----------+
+                           |
+                           v
+                +----------------------+
+                | SQL Analytics &      |
+                | Validation Scripts   |
+                |      sql/            |
+                +----------------------+
+```
 
 ---
 
@@ -78,7 +135,16 @@ SQL Analytics
 
 ---
 
-## Database Schema
+## Business Questions
+
+* What is total revenue over time?
+→ sql/analytics/revenue_analysis.sql
+
+* Which products generate the highest revenue?
+→ sql/analytics/product_analysis.sql
+
+* Average delivery time?
+→ sql/analytics/delivery_analysis.sql
 
 ---
 
@@ -127,10 +193,24 @@ python -m python.main
 
 ## Usage
 
+Run the ETL pipeline:
+
+```bash
+python -m python.main
+```
+
+The pipeline will:
+
+- Extract raw CSV files
+- Transform and clean the data
+- Load data into MySQL
+- Prepare the database for analytics
+
 ---
 
 ## Sample Output
 
+```
 ========== ETL Pipeline ==========
 
 Step 1 : Transform
@@ -148,27 +228,15 @@ Step 2 : Load
 ✓ Loaded order_items (112,650 rows)
 
 ✓ All tables loaded successfully!
-
----
-
-## Business Questions
-
-* What is total revenue over time?
-→ sql/analytics/revenue_analysis.sql
-
-* Which products generate the highest revenue?
-→ sql/analytics/product_analysis.sql
-
-* Average delivery time?
-→ sql/analytics/delivery_analysis.sql
+```
 
 ---
 
 ## Analytics SQL
 
-### Example Analytics Queries
+#### Example Analytics Queries
 
-### Total Revenue
+##### Total Revenue
 
 ```sql
 SELECT
@@ -176,7 +244,7 @@ SELECT
 FROM order_items;
 ```
 
-### Top Customer States
+##### Top Customer States
 
 ```sql
 SELECT
@@ -191,9 +259,9 @@ ORDER BY total_customers DESC;
 
 ## Validation SQL
 
-### Data Validation
+#### Data Validation
 
-### Duplicate Check
+##### Duplicate Check
 
 ```sql
 SELECT customer_id, COUNT(*)
@@ -202,28 +270,13 @@ GROUP BY customer_id
 HAVING COUNT(*) > 1;
 ```
 
-### Null Check
+##### Null Check
 
 ```sql
 SELECT *
 FROM customers
 WHERE customer_id IS NULL;
 ```
-
----
-
-## Technology Stack
-
-* Python
-* Pandas
-* SQL
-* MySQL
-* SQLAlchemy
-* PyMySQL
-* Git
-* GitHub
-* Visual Studio Code
-
 ---
 
 ## Project Status
@@ -252,3 +305,13 @@ Features:
 ---
 
 ## Acknowledgements
+
+This project uses the following resources:
+
+- Brazilian E-Commerce Public Dataset by Olist
+  https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
+
+- Python
+- Pandas
+- SQLAlchemy
+- MySQL
