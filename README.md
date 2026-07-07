@@ -187,55 +187,57 @@ product_weight_g
 
 ## Business Questions
 
+The following analytical queries were designed to answer business questions for different stakeholders.
+
 ### ❓ CEO — Business Overview
 
-**Business Question**
-- What is the overall business performance?
+- Business Question
+→ What is the overall business performance?
 
-**Key Metrics**
-- Total revenue
-- Total orders
-- Total customers
-- Average order value
+- Key Metrics
+→ Total revenue
+→ Total orders
+→ Total customers
+→ Average order value
 
-**SQL File**
+- SQL File
 `sql/analytics/business_overview.sql`
 
 
 ### ❓ Sales Manager — Sales Performance
 
-**Business Question**
-- How do sales and revenue change over time?
+- Business Question
+→ How do sales and revenue change over time?
 
-**SQL File**
+- SQL File
 `sql/analytics/sales_trend.sql`
 
 
 ### ❓ Logistics Manager — Delivery Performance
 
-**Business Question**
-- What is the average delivery time?
-- Are there delayed deliveries?
+- Business Question
+→ What is the average delivery time?
+→ Are there delayed deliveries?
 
-**SQL File**
+- SQL File
 `sql/analytics/delivery_analysis.sql`
 
 
 ### ❓ Product Performance
 
-**Business Question**
-- Which product categories generate the highest revenue?
+- Business Question
+→ Which product categories generate the highest revenue?
 
-**SQL File**
+- SQL File
 `sql/analytics/product_analysis.sql`
 
 
 ### ❓ Regional Sales
 
-**Business Question**
-- Which customer states generate the highest revenue?
+- Business Question
+→ Which customer states generate the highest revenue?
 
-**SQL File**
+- SQL File
 `sql/analytics/regional_sales.sql`
 
 ---
