@@ -189,7 +189,7 @@ product_weight_g
 
 The following analytical queries were designed to answer business questions for different stakeholders.
 
-### ❓ CEO — Business Overview
+#### CEO — Business Overview
 
 - Business Question
     - What is the overall business performance?
@@ -204,7 +204,7 @@ The following analytical queries were designed to answer business questions for 
 `sql/analytics/business_overview.sql`
 
 
-### ❓ Sales Manager — Sales Performance
+#### Sales Manager — Sales Performance
 
 - Business Question
     - How do sales and revenue change over time?
@@ -213,7 +213,7 @@ The following analytical queries were designed to answer business questions for 
 `sql/analytics/sales_trend.sql`
 
 
-### ❓ Logistics Manager — Delivery Performance
+#### Logistics Manager — Delivery Performance
 
 - Business Question
     - What is the average delivery time?
@@ -223,7 +223,7 @@ The following analytical queries were designed to answer business questions for 
 `sql/analytics/delivery_analysis.sql`
 
 
-### ❓ Product Performance
+#### Product Performance
 
 - Business Question
     - Which product categories generate the highest revenue?
@@ -232,7 +232,7 @@ The following analytical queries were designed to answer business questions for 
 `sql/analytics/product_analysis.sql`
 
 
-### ❓ Regional Sales
+#### Regional Sales
 
 - Business Question
     - Which customer states generate the highest revenue?
