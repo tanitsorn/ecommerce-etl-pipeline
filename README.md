@@ -187,9 +187,9 @@ product_weight_g
 
 ## Business Questions
 
-#### CEO — Business Overview
+### CEO — Business Overview
 
-**Question**
+**Business Question**
 - What is the overall business performance?
 
 **Metrics**
@@ -198,44 +198,44 @@ product_weight_g
 - Total customers
 - Average order value
 
-**SQL**
+**Query**
 `sql/analytics/business_overview.sql`
-<br>
+<hr width="25%" align="left">
 
-#### Sales Manager — Sales Performance
+### Sales Manager — Sales Performance
 
-**Question**
+**Business Question**
 - How do sales and revenue change over time?
 
-**SQL**
+**Query**
 `sql/analytics/sales_trend.sql`
-<br>
+<hr width="25%" align="left">
 
-#### Logistics Manager — Delivery Performance
+### Logistics Manager — Delivery Performance
 
-**Question**
+**Business Question**
 - What is the average delivery time?
 - Are there delayed deliveries?
 
-**SQL**
+**Query**
 `sql/analytics/delivery_analysis.sql`
-<br>
+<hr width="25%" align="left">
 
-#### Product Performance
+### Product Performance
 
-**Question**
+**Business Question**
 - Which product categories generate the highest revenue?
 
-**SQL**
+**Query**
 `sql/analytics/product_analysis.sql`
-<br>
+<hr width="25%" align="left">
 
-#### Regional Sales
+### Regional Sales
 
-**Question**
+**Business Question**
 - Which customer states generate the highest revenue?
 
-**SQL**
+**Query**
 `sql/analytics/regional_sales.sql`
 
 ---
