@@ -9,7 +9,7 @@
 
 An end-to-end ETL project built with Python, SQL, and MySQL using the Brazilian E-Commerce Public Dataset by Olist.
 
-This project demonstrates practical Data Engineering skills including data extraction, transformation, loading, relational database design, and business analytics.
+The project builds a complete ETL pipeline that extracts raw e-commerce data, transforms it into analytics-ready datasets, loads it into MySQL, and enables business reporting through SQL analytics.
 
 ---
 
@@ -121,7 +121,8 @@ Extract (Python)
       │
       ▼
 Transform
-- Clean missing values
+- Remove duplicates
+- Handle missing values
 - Convert datetime
 - Calculate revenue
 - Calculate delivery days
@@ -200,8 +201,6 @@ product_weight_g
 **SQL**
 `sql/analytics/business_overview.sql`
 
----
-
 #### Sales Manager — Sales Performance
 
 **Question**
@@ -210,17 +209,14 @@ product_weight_g
 **SQL**
 `sql/analytics/sales_trend.sql`
 
----
-
 #### Logistics Manager — Delivery Performance
 
 **Question**
 - What is the average delivery time?
+- Are there delayed deliveries?
 
 **SQL**
 `sql/analytics/delivery_analysis.sql`
-
----
 
 #### Product Performance
 
@@ -229,8 +225,6 @@ product_weight_g
 
 **SQL**
 `sql/analytics/product_analysis.sql`
-
----
 
 #### Regional Sales
 
@@ -287,18 +281,16 @@ python -m python.main
 
 ## Usage
 
-Run the ETL pipeline:
-
-```bash
-python -m python.main
-```
-
 The pipeline will:
 
 - Extract raw CSV files
 - Transform and clean the data
 - Load transformed data into MySQL
-- Execute SQL analytics queries
+- Prepare the database for analytical SQL queries
+
+After loading, analytics queries can be executed from:
+
+sql/analytics/
 
 ---
 
@@ -330,59 +322,28 @@ ETL pipeline finished!
 
 ## Analytics SQL
 
-#### Example Analytics Queries
+Analytics queries are available under:
 
-##### Total Revenue
+sql/analytics/
 
-```sql
-SELECT
-    ROUND(SUM(price + freight_value),2) AS total_revenue
-FROM order_items;
-```
-
-##### Average Delivery Time
-
-```sql
-SELECT
-AVG(DATEDIFF(order_delivered_customer_date,
-             order_purchase_timestamp))
-AS avg_delivery_days
-FROM orders;
-```
-
-##### Top Customer States
-
-```sql
-SELECT
-    customer_state,
-    COUNT(*) AS total_customers
-FROM customers
-GROUP BY customer_state
-ORDER BY total_customers DESC;
-```
+- business_overview.sql
+- sales_trend.sql
+- delivery_analysis.sql
+- product_analysis.sql
+- regional_sales.sql
 
 ---
 
 ## Validation SQL
 
-#### Data Validation
+Validation queries are available under:
 
-##### Duplicate Check
+sql/validation/
 
-```sql
-SELECT customer_id, COUNT(*)
-FROM customers
-GROUP BY customer_id
-HAVING COUNT(*) > 1;
-```
+- duplicate_check.sql
+- null_check.sql
+- sanity_check.sql
 
-##### Null Check
-
-```sql
-SELECT *
-FROM customers
-WHERE customer_id IS NULL;
-```
 ---
 
 ## Project Status
@@ -392,12 +353,11 @@ WHERE customer_id IS NULL;
 The ETL pipeline has been fully implemented and tested.
 
 Features:
-- Extract raw ecommerce datasets
-- Transform and clean data
-- Load data into MySQL
-- Foreign key relationships
-- SQL validation scripts
+- Automated ETL pipeline
+- Data transformation and cleaning
+- Relational MySQL database
 - SQL analytics queries
+- Data validation queries
 
 ---
 
