@@ -1,4 +1,4 @@
 SELECT *
 FROM orders
-WHERE order_od IS NULL
+WHERE order_id IS NULL
     OR customer_id IS NULL;

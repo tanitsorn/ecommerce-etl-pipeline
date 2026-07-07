@@ -182,17 +182,63 @@ product_category_name
 product_weight_g
 ...
 ```
+---
 
 ## Business Questions
 
-- What is total revenue over time?
-  - `sql/analytics/revenue_analysis.sql`
+#### CEO — Business Overview
 
-- Which products generate the highest revenue?
-  - `sql/analytics/product_analysis.sql`
+**Question**
+- What is the overall business performance?
 
+**Metrics**
+- Total revenue
+- Total orders
+- Total customers
+- Average order value
+
+**SQL**
+`sql/analytics/business_overview.sql`
+
+---
+
+#### Sales Manager — Sales Performance
+
+**Question**
+- How do sales and revenue change over time?
+
+**SQL**
+`sql/analytics/sales_trend.sql`
+
+---
+
+#### Logistics Manager — Delivery Performance
+
+**Question**
 - What is the average delivery time?
-  - `sql/analytics/delivery_analysis.sql`
+
+**SQL**
+`sql/analytics/delivery_analysis.sql`
+
+---
+
+#### Product Performance
+
+**Question**
+- Which product categories generate the highest revenue?
+
+**SQL**
+`sql/analytics/product_analysis.sql`
+
+---
+
+#### Regional Sales
+
+**Question**
+- Which customer states generate the highest revenue?
+
+**SQL**
+`sql/analytics/regional_sales.sql`
 
 ---
 
