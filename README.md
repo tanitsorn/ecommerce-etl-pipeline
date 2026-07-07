@@ -200,6 +200,7 @@ product_weight_g
 
 **SQL**
 `sql/analytics/business_overview.sql`
+<br>
 
 #### Sales Manager — Sales Performance
 
@@ -208,6 +209,7 @@ product_weight_g
 
 **SQL**
 `sql/analytics/sales_trend.sql`
+<br>
 
 #### Logistics Manager — Delivery Performance
 
@@ -217,6 +219,7 @@ product_weight_g
 
 **SQL**
 `sql/analytics/delivery_analysis.sql`
+<br>
 
 #### Product Performance
 
@@ -225,6 +228,7 @@ product_weight_g
 
 **SQL**
 `sql/analytics/product_analysis.sql`
+<br>
 
 #### Regional Sales
 
