@@ -192,13 +192,13 @@ The following analytical queries were designed to answer business questions for 
 ### ❓ CEO — Business Overview
 
 - Business Question
-→ What is the overall business performance?
+    - What is the overall business performance?
 
 - Key Metrics
-→ Total revenue
-→ Total orders
-→ Total customers
-→ Average order value
+    - Total revenue
+    - Total orders
+    - Total customers
+    - Average order value
 
 - SQL File
 `sql/analytics/business_overview.sql`
@@ -207,7 +207,7 @@ The following analytical queries were designed to answer business questions for 
 ### ❓ Sales Manager — Sales Performance
 
 - Business Question
-→ How do sales and revenue change over time?
+    - How do sales and revenue change over time?
 
 - SQL File
 `sql/analytics/sales_trend.sql`
@@ -216,8 +216,8 @@ The following analytical queries were designed to answer business questions for 
 ### ❓ Logistics Manager — Delivery Performance
 
 - Business Question
-→ What is the average delivery time?
-→ Are there delayed deliveries?
+    - What is the average delivery time?
+    - Are there delayed deliveries?
 
 - SQL File
 `sql/analytics/delivery_analysis.sql`
@@ -226,7 +226,7 @@ The following analytical queries were designed to answer business questions for 
 ### ❓ Product Performance
 
 - Business Question
-→ Which product categories generate the highest revenue?
+    - Which product categories generate the highest revenue?
 
 - SQL File
 `sql/analytics/product_analysis.sql`
@@ -235,7 +235,7 @@ The following analytical queries were designed to answer business questions for 
 ### ❓ Regional Sales
 
 - Business Question
-→ Which customer states generate the highest revenue?
+    - Which customer states generate the highest revenue?
 
 - SQL File
 `sql/analytics/regional_sales.sql`
