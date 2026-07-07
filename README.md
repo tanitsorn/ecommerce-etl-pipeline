@@ -53,10 +53,10 @@ data/clean/
 
 * Python
 * Pandas
-* SQL
-* MySQL
 * SQLAlchemy
 * PyMySQL
+* MySQL
+* SQL
 * Git
 * GitHub
 * Visual Studio Code
@@ -135,16 +135,64 @@ SQL Analytics
 
 ---
 
+## Database Schema
+
+The ETL pipeline loads transformed data into a MySQL relational database.
+
+```text
+customers
+-----------
+customer_id (PK)
+customer_unique_id
+customer_city
+customer_state
+...
+
+        │
+        │ customer_id
+        ▼
+
+orders
+-----------
+order_id (PK)
+customer_id (FK)
+order_status
+order_purchase_timestamp
+...
+
+        │
+        │ order_id
+        ▼
+
+order_items
+-----------
+order_id (FK)
+product_id (FK)
+price
+freight_value
+...
+
+        ▲
+        │ product_id
+
+products
+-----------
+product_id (PK)
+product_category_name
+product_weight_g
+...
+```
+
 ## Business Questions
 
-* What is total revenue over time?
-→ sql/analytics/revenue_analysis.sql
+- What is total revenue over time?
+  - `sql/analytics/revenue_analysis.sql`
 
-* Which products generate the highest revenue?
-→ sql/analytics/product_analysis.sql
+- Which products generate the highest revenue?
+  - `sql/analytics/product_analysis.sql`
 
-* Average delivery time?
-→ sql/analytics/delivery_analysis.sql
+- What is the average delivery time?
+  - `sql/analytics/delivery_analysis.sql`
 
 ---
 
@@ -157,7 +205,7 @@ data/
 
 python/
     extract/
-        extract_date.py
+        extract_data.py
     transform/
         transform_customers.py
         transform_orders.py
@@ -182,7 +230,7 @@ README.md
 ## Installation
 
 ```bash
-git clone ...
+git clone https://github.com/tanitsorn/ecommerce-etl-pipeline.git
 cd ecommerce-etl-pipeline
 
 pip install -r requirements.txt
@@ -203,8 +251,8 @@ The pipeline will:
 
 - Extract raw CSV files
 - Transform and clean the data
-- Load data into MySQL
-- Prepare the database for analytics
+- Load transformed data into MySQL
+- Execute SQL analytics queries
 
 ---
 
@@ -228,6 +276,8 @@ Step 2 : Load
 ✓ Loaded order_items (112,650 rows)
 
 ✓ All tables loaded successfully!
+
+ETL pipeline finished!
 ```
 
 ---
@@ -242,6 +292,16 @@ Step 2 : Load
 SELECT
     ROUND(SUM(price + freight_value),2) AS total_revenue
 FROM order_items;
+```
+
+##### Average Delivery Time
+
+```sql
+SELECT
+AVG(DATEDIFF(order_delivered_customer_date,
+             order_purchase_timestamp))
+AS avg_delivery_days
+FROM orders;
 ```
 
 ##### Top Customer States
