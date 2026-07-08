@@ -189,36 +189,45 @@ product_weight_g
 
 The following analytical queries were designed to answer business questions for different stakeholders.
 
-#### 1. CEO: Business Overview
+### 1. CEO — Business Overview
 
-- Business Question
-    - What is the overall business performance?
+**Business Question**
 
-- Key Metrics
-    - Total revenue
-    - Total orders
-    - Total customers
-    - Average order value
+- What is the overall business performance?
 
-- Implementation -> `sql/analytics/business_overview.sql`
+**Key Metrics**
 
+- Total revenue
+- Total orders
+- Total customers
+- Average order value
 
-#### 2. Sales Manager: Sales Performance
+**Implementation**
 
-- Business Question
-    - How do sales and revenue change over time?
-    - Which customer states generate the highest revenue?
+`sql/analytics/business_overview.sql`
 
-- Implementation -> `sql/analytics/sales_trend.sql` , `sql/analytics/regional_sales.sql`
+### 2. Sales Manager — Sales Performance
 
+**Business Questions**
 
-#### 3. Logistics Manager: Delivery Performance
+- How do sales and revenue change over time?
+- Which customer states generate the highest revenue?
 
-- Business Question
-    - What is the average delivery time?
-    - Are there delayed deliveries?
+**Implementation**
 
-- Implementation -> `sql/analytics/delivery_analysis.sql`
+- `sql/analytics/sales_trend.sql`
+- `sql/analytics/regional_sales.sql`
+
+### 3. Logistics Manager — Delivery Performance
+
+**Business Questions**
+
+- What is the average delivery time?
+- Are there delayed deliveries?
+
+**Implementation**
+
+`sql/analytics/delivery_analysis.sql`
 
 ---
 
