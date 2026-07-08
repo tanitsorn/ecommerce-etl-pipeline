@@ -9,7 +9,9 @@
 
 An end-to-end ETL project built with Python, SQL, and MySQL using the Brazilian E-Commerce Public Dataset by Olist.
 
-The project builds a complete ETL pipeline that extracts raw e-commerce data, transforms it into analytics-ready datasets, loads it into MySQL, and enables business reporting through SQL analytics.
+The project implements a complete ETL pipeline that extracts, transforms, and loads raw e-commerce data into a MySQL relational database, enabling business reporting through SQL analytics.
+
+This project was developed to simulate a real-world data engineering workflow, from raw transactional data to business-ready analytics.
 
 ---
 
@@ -28,6 +30,13 @@ This project uses the Brazilian E-commerce Public Dataset by Olist.
 
 **Source:**
 https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
+
+**Dataset size**
+
+- Customers: 99,441
+- Orders: 99,441
+- Order Items: 112,650
+- Products: 32,951
 
 Tables used:
 
@@ -63,6 +72,17 @@ data/clean/
 
 ---
 
+## Skills demonstrated
+
+- ETL Pipeline
+- Data Cleaning
+- Feature Engineering
+- Relational Database Design
+- SQL Analytics
+- Data Validation
+
+---
+
 ## Architecture
 
 <p align="left">
@@ -83,10 +103,10 @@ Extract (Python)
 Transform
 - Remove duplicates
 - Handle missing values
-- Standardize data type
+- Standardize data types
 - Feature engineering
-    - Revenue
-    - Delivery days
+   • Revenue
+   • Delivery days
       │
       ▼
 Load (MySQL)
@@ -198,7 +218,7 @@ python -m python.main
 
 ## Usage
 
-Running the pipeline:
+Run the ETL pipeline:
 
 ```bash
 python -m python.main
@@ -220,10 +240,16 @@ sql/analytics/
 ## Sample Output
 
 ### Business Overview
+
+Example SQL query result after loading the data.
+
 <p align="left">
   <img src="docs/images/business_overview_sql.png" width="500"> </p>
 
 ### ETL Pipeline
+
+Example pipeline execution in the terminal.
+
 <p align="left">
   <img src="docs/images/etl_pipeline.png" width="250"> </p>
 
@@ -233,7 +259,7 @@ sql/analytics/
 
 Analytics queries are available under:
 
-```sql/analytics/```
+`sql/analytics/`
 
 - business_overview.sql
 - sales_trend.sql
@@ -247,7 +273,7 @@ Analytics queries are available under:
 
 Validation queries are available under:
 
-```sql/validation/```
+`sql/validation/`
 
 - duplicate_check.sql
 - null_check.sql
