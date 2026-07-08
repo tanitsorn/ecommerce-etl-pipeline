@@ -38,20 +38,20 @@ https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 - Order Items: 112,650
 - Products: 32,951
 
-Tables used:
+**Tables used:**
 
 - Customers
 - Orders
 - Order Items
 - Products
 
-Raw files are stored in:
+**Raw files are stored in:**
 
 ```text
 data/raw/
 ```
 
-Transformed datasets are stored in:
+**Transformed datasets are stored in:**
 
 ```text
 data/clean/
