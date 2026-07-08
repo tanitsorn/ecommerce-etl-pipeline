@@ -81,9 +81,10 @@ Extract (Python)
 Transform
 - Remove duplicates
 - Handle missing values
-- Convert datetime
-- Calculate revenue
-- Calculate delivery days
+- Standardize data type
+- Feature engineering
+    - Revenue
+    - Delivery days
       │
       ▼
 Load (MySQL)
@@ -195,6 +196,12 @@ python -m python.main
 
 ## Usage
 
+Running the pipeline:
+
+```bash
+python -m python.main
+```
+
 The pipeline will:
 
 - Extract raw CSV files
@@ -209,6 +216,13 @@ sql/analytics/
 ---
 
 ## Sample Output
+
+### Business Overview
+![Business Overview](docs/images/business_overview_sql.png)
+
+### ETL Pipeline
+![ETL Pipeline](docs/images/etl_pipeline.png)
+
 
 ```
 ========== ETL Pipeline ==========
@@ -238,7 +252,7 @@ ETL pipeline finished!
 
 Analytics queries are available under:
 
-sql/analytics/
+```sql/analytics/```
 
 - business_overview.sql
 - sales_trend.sql
@@ -252,7 +266,7 @@ sql/analytics/
 
 Validation queries are available under:
 
-sql/validation/
+```sql/validation/```
 
 - duplicate_check.sql
 - null_check.sql
