@@ -224,10 +224,12 @@ The following analytical queries were designed to answer business questions for 
 
 - What is the average delivery time?
 - Are there delayed deliveries?
+- Which customer states have the highest average freight cost?
 
 **Implementation**
 
-`sql/analytics/delivery_analysis.sql`
+- `sql/analytics/delivery_analysis.sql`
+- `sql/analytics/freight_analysis.sql`
 
 ---
 

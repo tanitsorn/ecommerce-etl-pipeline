@@ -1,3 +1,11 @@
+-- ==================================================
+-- Business Question:
+-- Which customer states have the highest average freight cost?
+--
+-- Metrics:
+-- - Average freight cost by customer state
+-- ==================================================
+
 SELECT c.customer_state,
        ROUND(AVG(oi.freight_value), 2) AS avg_freight_cost
 FROM customers c 

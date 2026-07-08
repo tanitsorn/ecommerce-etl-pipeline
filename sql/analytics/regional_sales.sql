@@ -1,3 +1,11 @@
+-- ==================================================
+-- Business Question:
+-- Which customer states generate the highest revenue?
+--
+-- Metrics:
+-- - Revenue by customer state
+-- ==================================================
+
 SELECT c.customer_state,
        ROUND(SUM(oi.price + oi.freight_value) , 2) AS revenue
 FROM customers c 

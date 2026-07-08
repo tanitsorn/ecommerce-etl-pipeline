@@ -1,3 +1,12 @@
+-- ==================================================
+-- Business Question:
+-- How do sales and revenue change over time?
+--
+-- Metrics:
+-- - Daily orders
+-- - Daily revenue
+-- ==================================================
+
 SELECT DATE(order_purchase_timestamp) AS order_date,
        COUNT(DISTINCT o.order_id) AS total_orders,
        ROUND(SUM(price + freight_value) , 2) AS daily_revenue

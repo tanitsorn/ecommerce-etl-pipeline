@@ -1,3 +1,14 @@
+-- ==================================================
+-- Business Question:
+-- What is the overall business performance?
+--
+-- Metrics:
+-- - Total orders
+-- - Total customers
+-- - Total revenue
+-- - Average order value
+-- ==================================================
+
 SELECT COUNT(DISTINCT o.order_id) AS total_orders,
        COUNT(DISTINCT c.customer_id) AS total_customers,
        ROUND(SUM(oi.price + oi.freight_value), 2) AS total_revenue,
