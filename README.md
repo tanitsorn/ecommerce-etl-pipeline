@@ -66,7 +66,7 @@ data/clean/
 ## Architecture
 
 <p align="left">
-  <img src="docs/images/architecture.png" width="420">
+  <img src="docs/images/architecture.png" width="300">
 </p>
 
 ---
@@ -221,12 +221,12 @@ sql/analytics/
 
 ### Business Overview
 <p align="left">
-  <img src="docs/images/business_overview_sql.png" width="420">
+  <img src="docs/images/business_overview_sql.png" width="500">
 </p>
 
 ### ETL Pipeline
 <p align="left">
-  <img src="docs/images/etl_pipeline.png" width="420">
+  <img src="docs/images/etl_pipeline.png" width="300">
 </p>
 
 ---
