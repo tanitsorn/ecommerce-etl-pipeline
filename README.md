@@ -65,7 +65,9 @@ data/clean/
 
 ## Architecture
 
-![ETL Architecture](docs/images/architecture.png)
+<p align="left">
+  <img src="docs/images/architecture.png" width="420">
+</p>
 
 ---
 
@@ -218,33 +220,14 @@ sql/analytics/
 ## Sample Output
 
 ### Business Overview
-![Business Overview](docs/images/business_overview_sql.png)
+<p align="left">
+  <img src="docs/images/business_overview_sql.png" width="420">
+</p>
 
 ### ETL Pipeline
-![ETL Pipeline](docs/images/etl_pipeline.png)
-
-
-```
-========== ETL Pipeline ==========
-
-Step 1 : Transform
-
-✓ Customers transformed
-✓ Orders transformed
-✓ Order Items transformed
-✓ Products transformed
-
-Step 2 : Load
-
-✓ Loaded customers (99,441 rows)
-✓ Loaded products (32,951 rows)
-✓ Loaded orders (99,441 rows)
-✓ Loaded order_items (112,650 rows)
-
-✓ All tables loaded successfully!
-
-ETL pipeline finished!
-```
+<p align="left">
+  <img src="docs/images/etl_pipeline.png" width="420">
+</p>
 
 ---
 
