@@ -219,11 +219,11 @@ sql/analytics/
 
 ## Sample Output
 
-#### Business Overview
+### - Business Overview
 <p align="left">
   <img src="docs/images/business_overview_sql.png" width="500"> </p>
 
-#### ETL Pipeline
+### - ETL Pipeline
 <p align="left">
   <img src="docs/images/etl_pipeline.png" width="250"> </p>
 
