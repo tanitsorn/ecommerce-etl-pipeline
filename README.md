@@ -65,49 +65,7 @@ data/clean/
 
 ## Architecture
 
-```text
-                +----------------------+
-                |   Raw CSV Dataset    |
-                | (Olist E-commerce)   |
-                +----------+-----------+
-                           |
-                           v
-                +----------------------+
-                |    Extract Module    |
-                |  python/extract/     |
-                +----------+-----------+
-                           |
-                           v
-                +----------------------+
-                |   Transform Module   |
-                | python/transform/    |
-                +----------+-----------+
-                           |
-                           v
-                +----------------------+
-                |     Clean CSVs       |
-                |    data/clean/       |
-                +----------+-----------+
-                           |
-                           v
-                +----------------------+
-                |     Load Module      |
-                |    python/load/      |
-                +----------+-----------+
-                           |
-                           v
-                +----------------------+
-                |      MySQL DB        |
-                |   ecommerce_etl      |
-                +----------+-----------+
-                           |
-                           v
-                +----------------------+
-                | SQL Analytics &      |
-                | Validation Scripts   |
-                |      sql/            |
-                +----------------------+
-```
+![ETL Architecture](docs/images/architecture.png)
 
 ---
 
@@ -140,49 +98,8 @@ SQL Analytics
 
 The ETL pipeline loads transformed data into a MySQL relational database.
 
-```text
-customers
------------
-customer_id (PK)
-customer_unique_id
-customer_city
-customer_state
-...
+![Database Schema](docs/images/database_schema.png)
 
-        │
-        │ customer_id
-        ▼
-
-orders
------------
-order_id (PK)
-customer_id (FK)
-order_status
-order_purchase_timestamp
-...
-
-        │
-        │ order_id
-        ▼
-
-order_items
------------
-order_id (FK)
-product_id (FK)
-price
-freight_value
-...
-
-        ▲
-        │ product_id
-
-products
------------
-product_id (PK)
-product_category_name
-product_weight_g
-...
-```
 ---
 
 ## Business Questions
