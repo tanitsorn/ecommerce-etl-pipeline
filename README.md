@@ -85,15 +85,8 @@ data/clean/
 
 ## Architecture
 
-```mermaid
-graph TD
-
-A["Raw CSV Files<br/>(Olist Dataset)"] --> B["Extract<br/>(Python)"]
-B --> C["Transform<br/>(Cleaning & Feature Engineering)"]
-C --> D["Clean CSV Files<br/>(data/clean)"]
-D --> E["Load<br/>(MySQL)"]
-E --> F["SQL Analytics & Validation"]
-```
+<p align="left">
+  <img src="docs/images/architecture.jpg" width="300"> </p>
 
 ---
 
