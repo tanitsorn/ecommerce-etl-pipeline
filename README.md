@@ -121,7 +121,7 @@ SQL Analytics
 
 The ETL pipeline loads transformed data into a MySQL relational database.
 
-![Database Schema](docs/images/database_schema.jpg)
+![Database Schema](docs/images/database_schema2.png)
 
 ---
 
