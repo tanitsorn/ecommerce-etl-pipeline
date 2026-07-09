@@ -88,11 +88,11 @@ data/clean/
 ```mermaid
 graph TD
 
-Raw CSV Files (Olist Dataset) --> Extract (Python)
-Extract (Python) --> Transform (Cleaning & Feture Engineering)
-Transform (Cleaning & Feature Engineering) --> Clean CSV Files (data/clean)
-Clean CSV Files (data/clean) --> Load (MySQL)
-Load (MySQL) --> SQL Analytics, SQL Valication
+A["Raw CSV Files<br/>(Olist Dataset)"] --> B["Extract<br/>(Python)"]
+B --> C["Transform<br/>(Cleaning & Feature Engineering)"]
+C --> D["Clean CSV Files<br/>(data/clean)"]
+D --> E["Load<br/>(MySQL)"]
+E --> F["SQL Analytics & Validation"]
 ```
 
 ---
