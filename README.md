@@ -86,7 +86,7 @@ data/clean/
 ## Architecture
 
 <p align="left">
-  <img src="docs/images/architecture.png" width="300">
+  <img src="docs/images/architecture.jpg" width="300">
 </p>
 
 ---
@@ -121,7 +121,7 @@ SQL Analytics
 
 The ETL pipeline loads transformed data into a MySQL relational database.
 
-![Database Schema](docs/images/database_schema.png)
+![Database Schema](docs/images/database_schema.jpg)
 
 ---
 
@@ -244,14 +244,14 @@ sql/analytics/
 Example SQL query result after loading the data.
 
 <p align="left">
-  <img src="docs/images/business_overview_sql.png" width="500"> </p>
+  <img src="docs/images/business_overview_sql.jpg" width="500"> </p>
 
 ### ETL Pipeline
 
 Example pipeline execution in the terminal.
 
 <p align="left">
-  <img src="docs/images/etl_pipeline.png" width="250"> </p>
+  <img src="docs/images/etl_pipeline.jpg" width="250"> </p>
 
 ---
 
