@@ -85,9 +85,15 @@ data/clean/
 
 ## Architecture
 
-<p align="left">
-  <img src="docs/images/architecture.jpg" width="300">
-</p>
+```mermaid
+graph TD
+
+Raw CSV Files (Olist Dataset) --> Extract (Python)
+Extract (Python) --> Transform (Cleaning & Feture Engineering)
+Transform (Cleaning & Feature Engineering) --> Clean CSV Files (data/clean)
+Clean CSV Files (data/clean) --> Load (MySQL)
+Load (MySQL) --> SQL Analytics, SQL Valication
+```
 
 ---
 
