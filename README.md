@@ -85,6 +85,11 @@ data/clean/
 
 ## Architecture
 
+![Cat](docs/images/cat.jpg)
+<p align="left">
+  <img src="docs/images/cat.jpg" width="300">
+</p>
+
 <p align="left">
   <img src="docs/images/architecture.jpg" width="300">
 </p>
