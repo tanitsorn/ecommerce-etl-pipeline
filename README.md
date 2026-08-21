@@ -105,6 +105,19 @@ https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 <p align="left">
   <img src="docs/images/architecture.jpg" width="300"> </p>
 
+                      Docker Compose
+                         │
+                         ▼
+                  Apache Airflow
+                         │
+                         ▼
+Raw CSV Files ──► ETL Pipeline ──► MySQL
+                     │
+              Extract / Transform
+                     │
+                     ▼
+                SQL Analytics
+
 ---
 
 ## ETL Workflow
@@ -314,7 +327,7 @@ Create an Airflow administrator account if needed:
 ```bash
 docker compose run --rm airflow-api airflow users create \
   --username admin \
-  --firstname Admin \ 
+  --firstname Admin \
   --lastname User \
   --role Admin \
   --email admin@example.com \
@@ -359,7 +372,7 @@ The pipeline will:
 - Load transformed data into MySQL
 - Prepare the database for analytical SQL queries
 
-### Run the ETL Pipeline with Airlow
+### Run the ETL Pipeline with Airflow
 
 start the Docker environment:
 
