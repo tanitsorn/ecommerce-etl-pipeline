@@ -52,13 +52,9 @@ https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 - Order Items
 - Products
 
-**Raw files are stored in:**
+**Raw files are stored in:** `data/raw/`
 
-`data/raw/`
-
-**Transformed datasets are stored in:**
-
-`data/clean/`
+**Transformed datasets are stored in:** `data/clean/`
 
 ---
 
