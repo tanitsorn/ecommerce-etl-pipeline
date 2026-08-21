@@ -15,6 +15,8 @@ The project implements an ETL pipeline that extracts raw e-commerce data, transf
 
 Apache Airflow is used to orchestrate the ETL workflow, while Docker Compose provides a reproducible environment for the ETL application, Airflow services, and databases.
 
+Automated tests and GitHub Actions CI are also implemented to validate the pipeline and ensure the project remains reliable as changes are introduced.
+
 This project simulates a real-world data engineering workflow, from raw transactional data to business-ready analytics.
 
 ---
@@ -28,6 +30,7 @@ This project simulates a real-world data engineering workflow, from raw transact
 * Containerize the application and data infrastructure using Docker.
 * Answer business questions using SQL analytics.
 * Implement data validation checks to improve data quality.
+* Implement automated testing and continuous integration.
 
 ---
 
@@ -75,6 +78,10 @@ https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 * Apache Airflow 3.0.2
 * Docker
 * Docker Compose
+
+### Testing & CI
+* pytest
+* GitHub Actions
 
 ### Development & Version Control
 * Git
@@ -142,9 +149,9 @@ The Airflow environment consists of:
 
 ```
 Airflow API
-      Scheduler
-      DAG Processor
-      PostgreSQL Metadata Database
+    Scheduler
+    DAG Processor
+    PostgreSQL Metadata Database
 ```
 
 The ETL DAG is located at:
@@ -262,11 +269,22 @@ ecommerce-etl-pipeline
       analytics/
       validation/
       schema.sql
+    
+  tests/
+      test_extract.py
+      test_transform.py
+      test_load.py
+    
+  .github/
+      workflows/
+          tests.yml
 
   docs/
       images/
 
   docker-compose.yml
+  Dockerfile
+  pytest.ini
   requirements.txt
   README.md
 ```
@@ -381,6 +399,47 @@ Analytics queries can be executed from:
 
 ---
 
+## Testing
+
+Automated tests are implemented using `pytest`.
+
+The test suite covers:
+* Data extraction
+* Data transformation
+* Data loading
+* Customer data schema validation
+
+Run the tests locally:
+
+```bash
+pytest -v
+```
+The current test suite contains 11 automated tests covering the core ETL components.
+
+Example result: 11 passed
+<p align="left">
+  <img src="docs/images/testing.jpg" width="500"> </p>
+
+---
+
+## Continuous Integration
+
+GitHub Actions is used to automatically validate the project on every push and pull request to the `main` branch.
+
+The CI workflow:
+
+1. Checks out the repository.
+2. Sets up Python 3.11.
+3. Installs project dependencies.
+4. Runs the automated test suite with pytest.
+5. Builds the Docker image.
+
+The workflow configuration is located at:
+
+`.github/workflows/tests.yml`
+
+---
+
 ## Sample Output
 
 ### Business Overview
@@ -429,7 +488,7 @@ Validation queries are available under:
 
 🟢 Completed
 
-The core ETL pipeline, Docker environment, and Airflow orchestration have been implemented and tested.
+The core ETL pipeline, Docker environment, Airflow orchestration, automated testing, and continuous integration have been implemented and tested.
 
 Features:
 - Automated ETL pipeline
@@ -438,6 +497,8 @@ Features:
 - Relational MySQL database
 - SQL analytics queries
 - Data validation queries
+- Automated tests with pytest
+- GitHub Actions CI
 - Docker containerization
 - Docker Compose environment
 - Apache Airflow orchestration
@@ -447,8 +508,8 @@ Features:
 
 ## Future Improvements
 
-- Unit Tests
-- GitHub Actions CI/CD
+- Cloud deployment
+- Data warehouse integration
 
 ---
 
@@ -465,3 +526,5 @@ This project uses the following resources:
 - MySQL
 - Apache Airflow
 - Docker
+- pytest
+- GitHub Actions
