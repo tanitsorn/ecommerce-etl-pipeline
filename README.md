@@ -105,19 +105,6 @@ https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 <p align="left">
   <img src="docs/images/architecture.jpg" width="300"> </p>
 
-                      Docker Compose
-                         │
-                         ▼
-                  Apache Airflow
-                         │
-                         ▼
-Raw CSV Files ──► ETL Pipeline ──► MySQL
-                     │
-              Extract / Transform
-                     │
-                     ▼
-                SQL Analytics
-
 ---
 
 ## ETL Workflow
