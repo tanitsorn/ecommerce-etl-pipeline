@@ -1,17 +1,21 @@
 # E-commerce ETL Pipeline
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue)
-![Pandas](https://img.shields.io/badge/Pandas-2.x-green)
+![Pandas](https://img.shields.io/badge/Pandas-2.1-green)
 ![MySQL](https://img.shields.io/badge/MySQL-8-orange)
+![Docker](https://img.shields.io/badge/Docker-Compose-blue)
+![Apache Airflow](https://img.shields.io/badge/Apache%20Airflow-3.0.2-red)
 ![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
 
 ## Overview
 
-An end-to-end ETL project built with Python, SQL, and MySQL using the Brazilian E-Commerce Public Dataset by Olist.
+An end-to-end data engineering project built with Python, SQL, MySQL, Docker, and Apache Airflow using the Brazilian E-Commerce Public Dataset by Olist.
 
-The project implements a complete ETL pipeline that extracts, transforms, and loads raw e-commerce data into a MySQL relational database, enabling business reporting through SQL analytics.
+The project implements an ETL pipeline that extracts raw e-commerce data, transforms and cleans the datasets, and loads analytics-ready data into a MySQL relational database.
 
-This project was developed to simulate a real-world data engineering workflow, from raw transactional data to business-ready analytics.
+Apache Airflow is used to orchestrate the ETL workflow, while Docker Compose provides a reproducible environment for the ETL application, Airflow services, and databases.
+
+This project simulates a real-world data engineering workflow, from raw transactional data to business-ready analytics.
 
 ---
 
@@ -20,7 +24,10 @@ This project was developed to simulate a real-world data engineering workflow, f
 * Build a production-style ETL pipeline.
 * Transform raw e-commerce data into analytics-ready datasets.
 * Load transformed data into MySQL.
-* Answer business questions using SQL.
+* Orchestrate ETL workflows using Apache Airflow.
+* Containerize the application and data infrastructure using Docker.
+* Answer business questions using SQL analytics.
+* Implement data validation checks to improve data quality.
 
 ---
 
@@ -60,12 +67,23 @@ data/clean/
 
 ## Technology Stack
 
-* Python
+### Programming & Data
+* Python 3.11
 * Pandas
 * SQLAlchemy
 * PyMySQL
-* MySQL
 * SQL
+
+### Database
+* MySQL 8.0
+* PostgreSQL 16 for Airflow metadata
+
+### Orchestration & Infrastructure
+* Apache Airflow 3.0.2
+* Docker
+* Docker Compose
+
+### Development & Version Control
 * Git
 * GitHub
 * Visual Studio Code
@@ -74,12 +92,18 @@ data/clean/
 
 ## Skills demonstrated
 
-- ETL Pipeline
+- ETL Pipeline Development
+- Data Extraction
 - Data Cleaning
+- Data Transformation
 - Feature Engineering
 - Relational Database Design
 - SQL Analytics
 - Data Validation
+- Workflow Orchestration
+- Docker Containerization
+- Apache Airflow
+- Git & GitHub
 
 ---
 
@@ -91,6 +115,8 @@ data/clean/
 ---
 
 ## ETL Workflow
+
+The ETL workflow consists of three main stages:
 
 ```text
 Raw CSV Files
@@ -113,6 +139,46 @@ Load (MySQL)
       ▼
 SQL Analytics
 ```
+
+---
+
+## Airflow Orchestration
+
+Apache Airflow is used to orchestrate and schedule the ETL workflow.
+The Airflow environment consists of:
+
+```
+Airflow API
+      Scheduler
+      DAG Processor
+      PostgreSQL Metadata Database
+```
+
+The ETL DAG is located at:
+
+```
+airflow/dags/ecommerce_etl_dag.py
+```
+
+The DAG coordinates the ETL process and provides workflow monitoring through the Airflow UI.
+
+---
+
+## Docker Environment
+
+Docker Compose is used to run the project services consistently across environments.
+Main services include:
+
+```
+airflow-api
+airflow-scheduler
+airflow-dag-processor
+airflow-postgres
+mysql
+app
+```
+
+The MySQL container stores the transformed e-commerce data, while PostgreSQL stores Airflow metadata.
 
 ---
 
@@ -175,49 +241,121 @@ The following analytical queries were designed to answer business questions for 
 ## Repository Structure
 
 ```
-data/
-    raw/
-    clean/
+ecommerce-etl-pipeline
+  airflow
+      dags/
+          ecommerce_etl_dag.py
+      Dockerfile
+      requirements.txt
 
-python/
-    extract/
-        extract_data.py
-    transform/
-        transform_customers.py
-        transform_orders.py
-        transform_products.py
-        transform_order_items.py
-    load/
-        load_to_mysql.py
-    utils/
-        config.py
+  data/
+      raw/
+      clean/
 
-sql/
-    analytics/
-    validation/
-    schema.sql
+  python/
+      extract/
+          extract_data.py
+      transform/
+          transform_customers.py
+          transform_orders.py
+          transform_products.py
+          transform_order_items.py
+          transform_pipeline.py
+      load/
+          load_to_mysql.py
+      utils/
+          config.py
+          file_utils.py
 
-docs/
+  sql/
+      analytics/
+      validation/
+      schema.sql
 
-README.md
+  docs/
+      images/
+
+  docker-compose.yml
+  requirements.txt
+  README.md
 ```
 ---
 
 ## Installation
 
+### Option 1 - Run with Docker Compose
+
+Clone the repository:
+
 ```bash
 git clone https://github.com/tanitsorn/ecommerce-etl-pipeline.git
 cd ecommerce-etl-pipeline
+```
 
+Build the Docker images:
+
+```bash
+docker compose build
+```
+
+Start the services:
+
+```bash
+docker compose up -d
+```
+
+Check the running containers:
+
+```bash
+docker compose ps
+```
+
+The Airflow UI is available at:
+
+```bash
+http://localhost:8080
+```
+
+### Airflow Login
+
+Create an Airflow administrator account if needed:
+
+```bash
+docker compose run --rm airflow-api airflow users create \
+  --username admin \
+  --firstname Admin \ 
+  --lastname User \
+  --role Admin \
+  --email admin@example.com \
+  --password admin
+```
+Then access the Airflow UI using the configured credentials.
+
+### Option 2 - Run Locally
+
+Create and activate a virtual environment:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+Install dependencies:
+
+```bash
 pip install -r requirements.txt
+```
 
+Run the ETL pipeline:
+```bash
 python -m python.main
 ```
+
 ---
 
 ## Usage
 
-Run the ETL pipeline:
+### Run the ETL Pipeline Locally
 
 ```bash
 python -m python.main
@@ -226,11 +364,27 @@ python -m python.main
 The pipeline will:
 
 - Extract raw CSV files
-- Transform and clean the data
+- Transform and clean the datasets
 - Load transformed data into MySQL
 - Prepare the database for analytical SQL queries
 
-After loading, analytics queries can be executed from:
+### Run the ETL Pipeline with Airlow
+
+start the Docker environment:
+
+```bash
+docker compose up -d
+```
+
+Open the Airflow UI:
+
+```bash
+http://localhost:8080
+```
+
+From the Airflow interface, the ETL DAG can be monitored and executed.
+
+Analytics queries can be executed from:
 
 sql/analytics/
 
@@ -284,21 +438,24 @@ Validation queries are available under:
 
 🟢 Completed
 
-The ETL pipeline has been fully implemented and tested.
+The core ETL pipeline, Docker environment, and Airflow orchestration have been implemented and tested.
 
 Features:
 - Automated ETL pipeline
-- Data transformation and cleaning
+- Data extraction and transformation
+- Data cleaning and feature engineering
 - Relational MySQL database
 - SQL analytics queries
 - Data validation queries
+- Docker containerization
+- Docker Compose environment
+- Apache Airflow orchestration
+- Airflow DAG for ETL workflow
 
 ---
 
 ## Future Improvements
 
-- Docker
-- Apache Airflow
 - Unit Tests
 - GitHub Actions CI/CD
 
@@ -315,3 +472,5 @@ This project uses the following resources:
 - Pandas
 - SQLAlchemy
 - MySQL
+- Apache Airflow
+- Docker
