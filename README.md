@@ -54,15 +54,12 @@ https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 
 **Raw files are stored in:**
 
-```text
-data/raw/
-```
+`data/raw/`
 
 **Transformed datasets are stored in:**
 
-```text
-data/clean/
-```
+`data/clean/`
+
 ---
 
 ## Technology Stack
@@ -156,9 +153,7 @@ Airflow API
 
 The ETL DAG is located at:
 
-```
-airflow/dags/ecommerce_etl_dag.py
-```
+`airflow/dags/ecommerce_etl_dag.py`
 
 The DAG coordinates the ETL process and provides workflow monitoring through the Airflow UI.
 
@@ -386,7 +381,7 @@ From the Airflow interface, the ETL DAG can be monitored and executed.
 
 Analytics queries can be executed from:
 
-sql/analytics/
+`sql/analytics/`
 
 ---
 
