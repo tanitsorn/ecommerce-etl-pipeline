@@ -110,7 +110,7 @@ https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 ## Architecture
 
 <p align="left">
-  <img src="docs/images/architecture.jpg" width="300"> </p>
+  <img src="docs/images/architecture_ecommerce.jpg" width="300"> </p>
 
 ---
 
