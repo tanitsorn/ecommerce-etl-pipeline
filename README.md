@@ -158,6 +158,9 @@ The ETL DAG is located at:
 
 The DAG coordinates the ETL process and provides workflow monitoring through the Airflow UI.
 
+<p align="left">
+  <img src="docs/images/airflow_success.jpg" width="400">
+</p>
 ---
 
 ## Docker Environment
