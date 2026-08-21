@@ -5,8 +5,8 @@ services:
     container_name: ecommerce-mysql
 
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: ecommerce_etl
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
 
     ports:
       - "3306:3306"
@@ -15,7 +15,7 @@ services:
       - ./sql/schema.sql:/docker-entrypoint-initdb.d/schema.sql
 
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p${MYSQL_ROOT_PASSWORD}"]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -23,14 +23,15 @@ services:
 
   app:
     build: .
+
     container_name: ecommerce-etl
 
     environment:
       MYSQL_HOST: mysql
-      MYSQL_PORT: 3306
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-      MYSQL_DATABASE: ecommerce_etl
+      MYSQL_PORT: ${MYSQL_PORT:-3306}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
 
     depends_on:
       mysql:
@@ -39,12 +40,13 @@ services:
 
   airflow-postgres:
     image: postgres:16
+
     container_name: ecommerce-airflow-postgres
 
     environment:
-      POSTGRES_USER: airflow
-      POSTGRES_PASSWORD: airflow
-      POSTGRES_DB: airflow
+      POSTGRES_USER: ${AIRFLOW_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${AIRFLOW_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${AIRFLOW_POSTGRES_DB}
 
     volumes:
       - airflow-postgres-data:/var/lib/postgresql/data
@@ -61,16 +63,18 @@ services:
 
     environment:
       AIRFLOW__CORE__LOAD_EXAMPLES: "false"
-      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow-postgres:5432/airflow
-      AIRFLOW__CORE__AUTH_MANAGER: airflow.providers.fab.auth_manager.fab_auth_manager.FabAuthManager
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: "postgresql+psycopg2://${AIRFLOW_POSTGRES_USER}:${AIRFLOW_POSTGRES_PASSWORD}@airflow-postgres:5432/${AIRFLOW_POSTGRES_DB}"
+      AIRFLOW__CORE__AUTH_MANAGER: "airflow.providers.fab.auth_manager.fab_auth_manager.FabAuthManager"
+
+      AIRFLOW__API_AUTH__JWT_SECRET: ${AIRFLOW_JWT_SECRET}
 
       PYTHONPATH: /opt/airflow
 
       MYSQL_HOST: mysql
-      MYSQL_PORT: 3306
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-      MYSQL_DATABASE: ecommerce_etl
+      MYSQL_PORT: ${MYSQL_PORT:-3306}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
 
     volumes:
       - ./airflow/dags:/opt/airflow/dags
@@ -83,8 +87,10 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+
       airflow-postgres:
         condition: service_started
+
 
   airflow-scheduler:
     build:
@@ -97,16 +103,18 @@ services:
 
     environment:
       AIRFLOW__CORE__LOAD_EXAMPLES: "false"
-      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow-postgres:5432/airflow
-      AIRFLOW__CORE__AUTH_MANAGER: airflow.providers.fab.auth_manager.fab_auth_manager.FabAuthManager
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: "postgresql+psycopg2://${AIRFLOW_POSTGRES_USER}:${AIRFLOW_POSTGRES_PASSWORD}@airflow-postgres:5432/${AIRFLOW_POSTGRES_DB}"
+      AIRFLOW__CORE__AUTH_MANAGER: "airflow.providers.fab.auth_manager.fab_auth_manager.FabAuthManager"
+      AIRFLOW__API_AUTH__JWT_SECRET: ${AIRFLOW_JWT_SECRET}
+      AIRFLOW__CORE__EXECUTION_API_SERVER_URL: "http://airflow-api:8080/execution/"
 
       PYTHONPATH: /opt/airflow
 
       MYSQL_HOST: mysql
-      MYSQL_PORT: 3306
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-      MYSQL_DATABASE: ecommerce_etl
+      MYSQL_PORT: ${MYSQL_PORT:-3306}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
 
     volumes:
       - ./airflow/dags:/opt/airflow/dags
@@ -116,9 +124,11 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+
       airflow-postgres:
         condition: service_started
-      
+
+
   airflow-dag-processor:
     build:
       context: .
@@ -130,16 +140,18 @@ services:
 
     environment:
       AIRFLOW__CORE__LOAD_EXAMPLES: "false"
-      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow-postgres:5432/airflow
-      AIRFLOW__CORE__AUTH_MANAGER: airflow.providers.fab.auth_manager.fab_auth_manager.FabAuthManager
+
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: "postgresql+psycopg2://${AIRFLOW_POSTGRES_USER}:${AIRFLOW_POSTGRES_PASSWORD}@airflow-postgres:5432/${AIRFLOW_POSTGRES_DB}"
+
+      AIRFLOW__CORE__AUTH_MANAGER: "airflow.providers.fab.auth_manager.fab_auth_manager.FabAuthManager"
 
       PYTHONPATH: /opt/airflow
 
       MYSQL_HOST: mysql
-      MYSQL_PORT: 3306
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-      MYSQL_DATABASE: ecommerce_etl
+      MYSQL_PORT: ${MYSQL_PORT:-3306}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
 
     volumes:
       - ./airflow/dags:/opt/airflow/dags
@@ -149,6 +161,7 @@ services:
     depends_on:
       airflow-postgres:
         condition: service_started
+
 
 volumes:
   airflow-postgres-data:
