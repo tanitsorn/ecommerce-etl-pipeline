@@ -145,14 +145,12 @@ SQL Analytics
 ## Airflow Orchestration
 
 Apache Airflow is used to orchestrate and schedule the ETL workflow.
-The Airflow environment consists of:
 
-```
-Airflow API
-    Scheduler
-    DAG Processor
-    PostgreSQL Metadata Database
-```
+The Airflow environment consists of the following services:
+* Airflow API - Provides the Airflow web interface and API endpoints.
+* Scheduler — Schedules and triggers ETL tasks.
+* DAG Processor — Processes and parses the Airflow DAG.
+* PostgreSQL — Stores Airflow metadata and workflow state.
 
 The ETL DAG is located at:
 
