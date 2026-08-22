@@ -5,6 +5,9 @@
 ![MySQL](https://img.shields.io/badge/MySQL-8-orange)
 ![Docker](https://img.shields.io/badge/Docker-Compose-blue)
 ![Apache Airflow](https://img.shields.io/badge/Apache%20Airflow-3.0.2-red)
+![AWS EC2](https://img.shields.io/badge/AWS-EC2-orange)
+![pytest](https://img.shields.io/badge/pytest-tested-brightgreen)
+![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-CI-blue)
 ![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
 
 ## Overview
@@ -118,7 +121,7 @@ https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 ## Architecture
 
 <p align="left">
-  <img src="docs/images/architecture_ecommerce.jpg" width="500"> </p>
+  <img src="docs/images/aws_ecommerce_etl_arc.jpg" width="500"> </p>
 
 ---
 
