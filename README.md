@@ -25,7 +25,8 @@ This project simulates a real-world data engineering workflow, from raw transact
 
 * Build a production-style ETL pipeline.
 * Transform raw e-commerce data into analytics-ready datasets.
-* Load transformed data into MySQL.
+* Clean and standardize data for downstream analytics.
+* Load transformed data into a relational MySQL database.
 * Orchestrate ETL workflows using Apache Airflow.
 * Containerize the application and data infrastructure using Docker.
 * Answer business questions using SQL analytics.
@@ -92,18 +93,20 @@ https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 
 ## Skills demonstrated
 
-- ETL Pipeline Development
-- Data Extraction
-- Data Cleaning
-- Data Transformation
-- Feature Engineering
-- Relational Database Design
-- SQL Analytics
-- Data Validation
-- Workflow Orchestration
-- Docker Containerization
-- Apache Airflow
-- Git & GitHub
+* ETL Pipeline Development
+* Data Extraction
+* Data Cleaning
+* Data Transformation
+* Feature Engineering
+* Relational Database Design
+* SQL Analytics
+* Data Validation
+* Automated Testing
+* Continuous Integration
+* Workflow Orchestration
+* Docker Containerization
+* Apache Airflow
+* Git & GitHub
 
 ---
 
@@ -144,7 +147,7 @@ SQL Analytics
 
 ## Airflow Orchestration
 
-Apache Airflow is used to orchestrate and schedule the ETL workflow.
+Apache Airflow is used to orchestrate and monitor the ETL workflow.
 
 The Airflow environment consists of the following services:
 * Airflow API - Provides the Airflow web interface and API endpoints.
@@ -166,7 +169,8 @@ The DAG coordinates the ETL process and provides workflow monitoring through the
 
 ## Docker Environment
 
-Docker Compose is used to run the project services consistently across environments.
+Docker Compose is used to provide a reproducible environment for the ETL application and Airflow infrastructure.
+
 Main services include:
 
 ```
@@ -178,7 +182,7 @@ mysql
 app
 ```
 
-The MySQL container stores the transformed e-commerce data, while PostgreSQL stores Airflow metadata.
+PostgreSQL is used for Airflow metadata, while MySQL is used as the relational database for the transformed e-commerce data.
 
 ---
 
@@ -187,6 +191,48 @@ The MySQL container stores the transformed e-commerce data, while PostgreSQL sto
 The ETL pipeline loads transformed data into a MySQL relational database.
 
 ![Database Schema](docs/images/database_schema2.png)
+
+The database consists of four main tables:
+
+* customers
+* products
+* orders
+* order_items
+
+Foreign key relationships are used to maintain referential integrity between customers, orders, and order items.
+
+---
+
+## Data Validation
+
+SQL validation queries are used to verify the quality and consistency of the loaded data.
+
+Validation checks include:
+
+### Null Checks
+Verified required fields in the `orders` table.
+
+Result: `0` invalid rows
+
+### Duplicate Checks
+Checked for duplicate `customer IDs`.
+
+Result: `0` duplicate customers
+
+### Sanity Checks
+Checked for:
+
+* Negative product prices
+* Negative freight costs
+* Invalid delivery dates
+
+Results:
+
+* Negative price: `0`
+* Negative freight: `0`
+* Invalid delivery date: `0`
+
+Validation queries are available under: `sql/validation/`
 
 ---
 
@@ -299,7 +345,7 @@ ecommerce-etl-pipeline
 Clone the repository:
 
 ```bash
-git clone https://github.com/tanitsorn/ecommerce-etl-pipeline.git
+git clone https://github.com/tanitsorn/ecommerce-etl-pipeline
 cd ecommerce-etl-pipeline
 ```
 
@@ -341,6 +387,8 @@ docker compose run --rm airflow-api airflow users create \
   --password admin
 ```
 Then access the Airflow UI using the configured credentials.
+
+`For real deployments, use secure credentials and environment variables rather than hardcoding passwords.`
 
 ### Option 2 - Run Locally
 
@@ -395,10 +443,9 @@ http://localhost:8080
 
 From the Airflow interface, the ETL DAG can be monitored and executed.
 
-Analytics queries can be executed from:
+Analytics queries can be executed from: `sql/analytics/`
 
-`sql/analytics/`
-
+Validation queries can be executed from: `sql/validation/`
 ---
 
 ## Testing
@@ -436,9 +483,7 @@ The CI workflow:
 4. Runs the automated test suite with pytest.
 5. Builds the Docker image.
 
-The workflow configuration is located at:
-
-`.github/workflows/tests.yml`
+The workflow configuration is located at: `.github/workflows/tests.yml`
 
 ---
 
@@ -466,12 +511,12 @@ Analytics queries are available under:
 
 `sql/analytics/`
 
-- business_overview.sql
-- sales_trend.sql
-- delivery_analysis.sql
-- product_analysis.sql
-- regional_sales.sql
-
+* `business_overview.sql`
+* `sales_trend.sql`
+* `delivery_analysis.sql`
+* `product_analysis.sql`
+* `regional_sales.sql`
+* `freight_analysis.sql`
 ---
 
 ## Validation SQL
@@ -480,9 +525,9 @@ Validation queries are available under:
 
 `sql/validation/`
 
-- duplicate_check.sql
-- null_check.sql
-- sanity_check.sql
+* `duplicate_check.sql`
+* `null_check.sql`
+* `sanity_check.sql`
 
 ---
 
@@ -505,6 +550,7 @@ Features:
 - Docker Compose environment
 - Apache Airflow orchestration
 - Airflow DAG for ETL workflow
+- Business-oriented SQL analysis
 
 ---
 
@@ -519,14 +565,14 @@ Features:
 
 This project uses the following resources:
 
-- Brazilian E-Commerce Public Dataset by Olist
+* Brazilian E-Commerce Public Dataset by Olist
   https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 
-- Python
-- Pandas
-- SQLAlchemy
-- MySQL
-- Apache Airflow
-- Docker
-- pytest
-- GitHub Actions
+* Python
+* Pandas
+* SQLAlchemy
+* MySQL
+* Apache Airflow
+* Docker
+* pytest
+* GitHub Actions
