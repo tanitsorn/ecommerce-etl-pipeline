@@ -3,8 +3,8 @@
 -- Olist E-commerce ETL Project
 -- ============================================
 
-CREATE DATABASE IF NOT EXISTS ecommerce_etl;
-USE ecommerce_etl;
+CREATE DATABASE IF NOT EXISTS ecommerce;
+USE ecommerce;
 
 -- ============================================
 -- Customers

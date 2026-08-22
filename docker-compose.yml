@@ -1,41 +1,16 @@
 services:
 
-  mysql:
-    image: mysql:8.0
-    container_name: ecommerce-mysql
-
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-
-    ports:
-      - "3306:3306"
-
-    volumes:
-      - ./sql/schema.sql:/docker-entrypoint-initdb.d/schema.sql
-
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p${MYSQL_ROOT_PASSWORD}"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
-
-
   app:
     build: .
 
     container_name: ecommerce-etl
 
     environment:
-      MYSQL_HOST: mysql
+      MYSQL_HOST: ${MYSQL_HOST}
       MYSQL_PORT: ${MYSQL_PORT:-3306}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
-
-    depends_on:
-      mysql:
-        condition: service_healthy
 
 
   airflow-postgres:
@@ -70,7 +45,7 @@ services:
 
       PYTHONPATH: /opt/airflow
 
-      MYSQL_HOST: mysql
+      MYSQL_HOST: ${MYSQL_HOST}
       MYSQL_PORT: ${MYSQL_PORT:-3306}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
@@ -85,9 +60,6 @@ services:
       - "8080:8080"
 
     depends_on:
-      mysql:
-        condition: service_healthy
-
       airflow-postgres:
         condition: service_started
 
@@ -110,7 +82,7 @@ services:
 
       PYTHONPATH: /opt/airflow
 
-      MYSQL_HOST: mysql
+      MYSQL_HOST: ${MYSQL_HOST}
       MYSQL_PORT: ${MYSQL_PORT:-3306}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
@@ -122,9 +94,6 @@ services:
       - ./data:/opt/airflow/data
 
     depends_on:
-      mysql:
-        condition: service_healthy
-
       airflow-postgres:
         condition: service_started
 
@@ -147,7 +116,7 @@ services:
 
       PYTHONPATH: /opt/airflow
 
-      MYSQL_HOST: mysql
+      MYSQL_HOST: ${MYSQL_HOST}
       MYSQL_PORT: ${MYSQL_PORT:-3306}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
