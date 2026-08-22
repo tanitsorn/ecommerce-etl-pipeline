@@ -9,11 +9,13 @@
 
 ## Overview
 
-An end-to-end data engineering project built with Python, SQL, MySQL, Docker, and Apache Airflow using the Brazilian E-Commerce Public Dataset by Olist.
+An end-to-end data engineering project built with Python, SQL, MySQL, Docker, Apache Airflow, and AWS using the Brazilian E-Commerce Public Dataset by Olist.
 
 The project implements an ETL pipeline that extracts raw e-commerce data, transforms and cleans the datasets, and loads analytics-ready data into a MySQL relational database.
 
 Apache Airflow is used to orchestrate the ETL workflow, while Docker Compose provides a reproducible environment for the ETL application, Airflow services, and databases.
+
+The project is deployed and tested on an AWS EC2 environment to demonstrate a cloud-based data engineering workflow.
 
 Automated tests and GitHub Actions CI are also implemented to validate the pipeline and ensure the project remains reliable as changes are introduced.
 
@@ -29,6 +31,7 @@ This project simulates a real-world data engineering workflow, from raw transact
 * Load transformed data into a relational MySQL database.
 * Orchestrate ETL workflows using Apache Airflow.
 * Containerize the application and data infrastructure using Docker.
+* Deploy the ETL environment to AWS EC2.
 * Answer business questions using SQL analytics.
 * Implement data validation checks to improve data quality.
 * Implement automated testing and continuous integration.
@@ -79,6 +82,7 @@ https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 * Apache Airflow 3.0.2
 * Docker
 * Docker Compose
+* AWS EC2
 
 ### Testing & CI
 * pytest
@@ -106,6 +110,7 @@ https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 * Workflow Orchestration
 * Docker Containerization
 * Apache Airflow
+* Cloud Deployment
 * Git & GitHub
 
 ---
@@ -183,6 +188,34 @@ app
 ```
 
 PostgreSQL is used for Airflow metadata, while MySQL is used as the relational database for the transformed e-commerce data.
+
+The same Docker Compose environment can be run locally or on an AWS EC2 instance.
+
+---
+
+## Cloud Deployment
+
+The project has been deployed and tested on `AWS EC2`.
+
+The EC2 instance runs the Docker Compose environment containing:
+
+```text
+EC2 Instance
+     │
+     ▼
+Docker Compose
+     │ 
+     ├── airflow-api 
+     ├── airflow-scheduler 
+     ├── airflow-dag-processor 
+     ├── airflow-postgres 
+     ├── mysql 
+     └── app
+```
+
+The deployment demonstrates how the ETL pipeline can be moved from a local development environment to a cloud-hosted infrastructure.
+
+The deployment was validated by running the complete Docker Compose environment and verifying that the required services started successfully.
 
 ---
 
@@ -345,7 +378,7 @@ ecommerce-etl-pipeline
 Clone the repository:
 
 ```bash
-git clone https://github.com/tanitsorn/ecommerce-etl-pipeline
+git clone https://github.com/tanitsorn/ecommerce-etl-pipeline.git
 cd ecommerce-etl-pipeline
 ```
 
@@ -535,7 +568,7 @@ Validation queries are available under:
 
 🟢 Completed
 
-The core ETL pipeline, Docker environment, Airflow orchestration, automated testing, and continuous integration have been implemented and tested.
+The core ETL pipeline, Docker environment, Airflow orchestration, AWS EC2 deployment, automated testing, and continuous integration have been implemented and tested.
 
 Features:
 - Automated ETL pipeline
@@ -551,13 +584,16 @@ Features:
 - Apache Airflow orchestration
 - Airflow DAG for ETL workflow
 - Business-oriented SQL analysis
+- AWS EC2 deployment
 
 ---
 
 ## Future Improvements
 
-- Cloud deployment
 - Data warehouse integration
+- Advanced data quality monitoring
+- Production monitoring and alerting
+- Cloud-native deployment using managed AWS services
 
 ---
 
@@ -576,3 +612,4 @@ This project uses the following resources:
 * Docker
 * pytest
 * GitHub Actions
+* AWS EC2
